@@ -1,0 +1,33 @@
+* {
+	margin: 0;
+	padding: 0;
+
+}
+
+body {
+	font-size: 50px;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+}
+
+#container {
+	display: flex;
+	justify-content: center;
+}
+
+strong {
+	padding: 0 20px;
+}
+
+#mouse, #description, strong {
+	font-size: 20px;
+}
+
+#description {
+	padding-bottom: 20px;
+}
+
+canvas {
+	background-color: black;
+}
+
