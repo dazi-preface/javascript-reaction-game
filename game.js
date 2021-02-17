@@ -42,7 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	function draw(){
+		if(!localStorage.getItem("highScore")){
+			localStorage.setItem("highScore", 0);
+		}
+		
 		document.getElementById("highscore").innerHTML = "Best time: " + localStorage.getItem("highScore") + "ms";
+		
+		
 
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
