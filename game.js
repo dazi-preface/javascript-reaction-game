@@ -14,7 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		var red = Math.floor(Math.random() * 200) + 30;
 		var green = Math.floor(Math.random() * 200) + 30;
 		var blue = Math.floor(Math.random() * 200) + 30;
-		ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
+
+		ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue + ")";
+		//ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
 	}
 
 	function drawShape(){
@@ -42,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	function draw(){
+		document.getElementById("highscore").innerHTML = "Best time: " + localStorage.getItem("highScore") + "ms";
 
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -65,14 +68,16 @@ document.addEventListener("DOMContentLoaded", () => {
 				localStorage.setItem("highScore", time);
 			}
 		}
-		document.getElementById("highscore").innerHTML = "Best time: " + localStorage.getItem("highScore") + "ms";
 		
 	}
 
 	function checkPosition(mouseEvent){
 		var xpos = mouseEvent.screenX - canvas.offsetLeft;
 		var ypos = (mouseEvent.screenY - canvas.offsetTop) - 112;
-		document.getElementById("mouse").innerHTML = "Coordinates: (" + xpos + ", " + ypos + ")";
+
+		//ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
+		document.getElementById("mouse").innerHTML = `Coordinates: ${xpos}, ${ypos} Offset: ${canvas.offsetLeft}, ${canvas.offsetTop}`;
+
 	
 		if ((xpos >= minX & xpos <= maxX) & (ypos >= minY & ypos <= maxY)){
 			document.getElementById("timer").innerHTML = "Time: " + time + "ms ";
