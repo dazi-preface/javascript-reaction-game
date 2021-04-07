@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	var maxX = 0;
 	var maxY = 0;
 	var time = 0;
+	var xpos = 0;
+	var ypos = 0;
 
 
 	function randomColor(){
@@ -23,6 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		var randomShape = Math.floor(Math.random() * 2);
 		var randomX = Math.floor(Math.random() * (canvas.width + 1));
 		var randomY = Math.floor(Math.random() * (canvas.height + 1));
+
+		console.log(`Random X: ${randomX}`);
+		console.log(`Random Y: ${randomY}`);
 
 		if (randomShape == 0){
 			ctx.rect(randomX, randomY, 50, 50);
@@ -71,9 +76,24 @@ document.addEventListener("DOMContentLoaded", () => {
 		
 	}
 
+
+	 function getMousePos(canvas, evt) {
+
+	 	console.log(evt);
+        var rect = canvas.getBoundingClientRect();
+        
+        xpos = evt.clientX - rect.left;
+		ypos = evt.clientY - rect.top;
+
+        console.log(`X ${xpos}`);
+        console.log(`Y ${ypos}`);
+
+        checkPosition(evt);
+        
+      }
+
+
 	function checkPosition(mouseEvent){
-		var xpos = mouseEvent.screenX - canvas.offsetLeft;
-		var ypos = (mouseEvent.screenY - canvas.offsetTop) - 112;
 
 		//ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
 		document.getElementById("mouse").innerHTML = `Coordinates: ${xpos}, ${ypos} Offset: ${canvas.offsetLeft}, ${canvas.offsetTop}`;
@@ -85,8 +105,16 @@ document.addEventListener("DOMContentLoaded", () => {
 			draw();
 			time = 0;
 		}
+
+
 	}
 
-	canvas.addEventListener("click", checkPosition, false);	
+
+	 canvas.addEventListener('click', function(evt) {
+	 	console.log("test")
+	 	var mousePos = getMousePos(canvas, evt);
+	 }, false);
+
+	//canvas.addEventListener("click", checkPosition, false);	
 	draw();
 });
